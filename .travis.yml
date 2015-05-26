@@ -20,3 +20,4 @@ before_script:
 script:
   - phpcs -i
   - phpcs --standard=PEAR /home/travis/build/thulin82/arsenal_webscrape
+  - phpunit

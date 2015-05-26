@@ -25,10 +25,10 @@ class ArsenalTime
 {
     const URL_ARSENAL_TIME = 'www.arsenal.com/fixtures/first-team';
 
-    private $_game_time;
+    private $_gameTime;
     private $_ch;
-    private $_home_team;
-    private $_away_team;
+    private $_homeTeam;
+    private $_aAwayTeam;
 
     /**
     * Constructor
@@ -65,9 +65,9 @@ class ArsenalTime
         preg_match('/data-next-fixture-time="(\d*)/', $html, $matches1);
         preg_match('/<td class="right club-name">(.*)<\/td>/', $html, $matches2);
         preg_match('/<td class="left club-name">(.*)<\/td>/', $html, $matches3);
-        $this->_game_time = $matches1[1];
-        $this->_home_team = $matches2[1];
-        $this->_away_team = $matches3[1];
+        $this->_gameTime = $matches1[1];
+        $this->_homeTeam = $matches2[1];
+        $this->_awayTeam = $matches3[1];
     }
 
     /**
@@ -77,7 +77,7 @@ class ArsenalTime
     */
     public function getGameTime()
     {
-        return $this->_game_time;
+        return $this->_gameTime;
     }
 
     /**
@@ -87,7 +87,7 @@ class ArsenalTime
     */
     public function getHomeTeam()
     {
-        return $this->_home_team;
+        return $this->_homeTeam;
     }
     
     /**
@@ -97,7 +97,7 @@ class ArsenalTime
     */
     public function getAwayTeam()
     {
-        return $this->_away_team;
+        return $this->_awayTeam;
     }
 }
 ?>

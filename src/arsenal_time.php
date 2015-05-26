@@ -25,7 +25,7 @@ class ArsenalTime
 {
     const URL_ARSENAL_TIME = 'www.arsenal.com/fixtures/first-team';
 
-    private $_gametime;
+    private $_gameTime;
     private $_ch;
     private $_hometeam;
     private $_awayteam;
@@ -37,7 +37,7 @@ class ArsenalTime
     */
     public function __construct()
     {
-        date_default_timezone_set("Europe/Stockholm");
+        date_default_timezone_set('Europe/Stockholm');
         $this->_ch = curl_init();
         curl_setopt($this->_ch, CURLOPT_HEADER, true);
         curl_setopt($this->_ch, CURLOPT_RETURNTRANSFER, true);
@@ -55,7 +55,7 @@ class ArsenalTime
     /**
     * GetArsenalTime
     *
-    * @return -
+    * @return void
     */
     public function getArsenalTime()
     {
@@ -65,7 +65,7 @@ class ArsenalTime
         preg_match('/data-next-fixture-time="(\d*)/', $html, $matches1);
         preg_match('/<td class="right club-name">(.*)<\/td>/', $html, $matches2);
         preg_match('/<td class="left club-name">(.*)<\/td>/', $html, $matches3);
-        $this->_gametime = $matches1[1];
+        $this->_gameTime = $matches1[1];
         $this->_hometeam = $matches2[1];
         $this->_awayteam = $matches3[1];
     }
@@ -77,7 +77,7 @@ class ArsenalTime
     */
     public function getGameTime()
     {
-        return $this->_gametime;
+        return $this->_gameTime;
     }
 
     /**
@@ -100,4 +100,3 @@ class ArsenalTime
         return $this->_awayteam;
     }
 }
-?>

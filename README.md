@@ -1,6 +1,7 @@
 # [Arsenal Webscrape](https://github.com/thulin82/arsenal_webscrape)
 [![Build Status](https://travis-ci.org/thulin82/arsenal_webscrape.svg?branch=master)](https://travis-ci.org/thulin82/arsenal_webscrape)
 [![Build Status](https://scrutinizer-ci.com/g/thulin82/arsenal_webscrape/badges/build.png?b=master)](https://scrutinizer-ci.com/g/thulin82/arsenal_webscrape/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thulin82/arsenal_webscrape/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thulin82/arsenal_webscrape/?branch=master)
 
 ## Requirements
 

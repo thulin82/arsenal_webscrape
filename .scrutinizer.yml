@@ -39,6 +39,8 @@ checks:
             type_name: '^[A-Z][a-zA-Z0-9]*$'
             exception_name: '^[A-Z][a-zA-Z0-9]*Exception$'
             isser_method_name: '^(?:is|has|should|may|supports)'
+        one_class_per_file: false
+
 filter:
     excluded_paths: [test/*]
 tools:

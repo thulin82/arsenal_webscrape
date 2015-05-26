@@ -3,7 +3,6 @@ checks:
         code_rating: true
         duplication: true
         uppercase_constants: true
-        properties_in_camelcaps: true
         parameters_in_camelcaps: true
         parameter_doc_comments: true
         optional_parameters_at_the_end: true

@@ -27,8 +27,8 @@ class ArsenalTime
 
     private $_gameTime;
     private $_ch;
-    private $_hometeam;
-    private $_awayteam;
+    private $_homeTeam;
+    private $_awayTeam;
 
     /**
     * Constructor
@@ -66,8 +66,8 @@ class ArsenalTime
         preg_match('/<td class="right club-name">(.*)<\/td>/', $html, $matches2);
         preg_match('/<td class="left club-name">(.*)<\/td>/', $html, $matches3);
         $this->_gameTime = $matches1[1];
-        $this->_hometeam = $matches2[1];
-        $this->_awayteam = $matches3[1];
+        $this->_homeTeam = $matches2[1];
+        $this->_awayTeam = $matches3[1];
     }
 
     /**
@@ -87,7 +87,7 @@ class ArsenalTime
     */
     public function getHomeTeam()
     {
-        return $this->_hometeam;
+        return $this->_homeTeam;
     }
     
     /**
@@ -97,6 +97,6 @@ class ArsenalTime
     */
     public function getAwayTeam()
     {
-        return $this->_awayteam;
+        return $this->_awayTeam;
     }
 }

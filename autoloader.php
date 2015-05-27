@@ -16,7 +16,8 @@
  */
 function myAutoloader($class)
 {
-    $path = "src/{$class}.php";
+    //$path = "src/{$class}.php";
+    $path = sprintf("src/%s.php",$class);
     if (is_file($path)) {
         include $path;
     }

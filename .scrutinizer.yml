@@ -40,6 +40,7 @@ checks:
             exception_name: '^[A-Z][a-zA-Z0-9]*Exception$'
             isser_method_name: '^(?:is|has|should|may|supports)'
         one_class_per_file: false
+        side_effects_or_types: false
 
 filter:
     excluded_paths: [test/*]

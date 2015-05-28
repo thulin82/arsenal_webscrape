@@ -59,7 +59,7 @@ class PremierLeagueSuspensions
     *
     * @return void
     */
-    public function getPLSuspensions()
+    public function getPlSuspensions()
     {
         curl_setopt($this->_ch, CURLOPT_URL, self::URL_PL_SUSPENSIONS);
         $html = curl_exec($this->_ch);
@@ -75,14 +75,13 @@ class PremierLeagueSuspensions
         $this->_clubName   = $matches2[1];
         $this->_dates      = $matches3[1];
         $this->_duration   = $matches4[1];
-
         $this->_clubName   = array_map('trim', $this->_clubName);
     }
     
     /**
     * GetPlayerName
     *
-    * @return string Player Name
+    * @return array<String> Player Name
     */
     public function getPlayerName()
     {
@@ -92,7 +91,7 @@ class PremierLeagueSuspensions
     /**
     * GetClubName
     *
-    * @return string Club Name
+    * @return array<String> Club Name
     */
     public function getClubName()
     {
@@ -102,7 +101,7 @@ class PremierLeagueSuspensions
     /**
     * GetDates
     *
-    * @return string Dates
+    * @return array<String> Dates
     */
     public function getDates()
     {
@@ -112,7 +111,7 @@ class PremierLeagueSuspensions
     /**
     * GetDuration
     *
-    * @return string Duration
+    * @return array<String> Duration
     */
     public function getDuration()
     {

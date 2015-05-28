@@ -32,7 +32,7 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->_test = new PremierLeagueSuspensions();
-        $this->_test->getPLSuspensions();
+        $this->_test->getPlSuspensions();
     }
     
     /**

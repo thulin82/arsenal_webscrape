@@ -36,6 +36,16 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test Teardown
+     *
+     * @return void
+     */
+    public function tearDown() 
+    {
+        unset($this->_test);
+    }
+    
+    /**
      * Test Game Time in getArsenalTime
      *
      * @return void

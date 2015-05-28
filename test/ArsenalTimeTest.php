@@ -23,7 +23,7 @@
 */
 class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
 {
-    private $test;
+    private $_test;
     /**
      * Test Setup
      *
@@ -31,8 +31,8 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp() 
     {
-        $this->test = new ArsenalTime();
-        $this->test->getArsenalTime();
+        $this->_test = new ArsenalTime();
+        $this->_test->getArsenalTime();
     }
     
     /**
@@ -42,7 +42,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      */
     public function testGameTime() 
     {
-        $res     = $this->test->getGameTime();
+        $res     = $this->_test->getGameTime();
         $pattern = '/\d{10}/';
         $this->assertRegExp($pattern, $res, 'Regexp missmatch');
     }
@@ -54,7 +54,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      */
     public function testHomeTeam() 
     {
-        $res     = $this->test->getHomeTeam();
+        $res     = $this->_test->getHomeTeam();
         $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
         $this->assertRegExp($pattern, $res, 'Regexp missmatch');
     }
@@ -66,7 +66,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      */
     public function testAwayTeam() 
     {
-        $res     = $this->test->getAwayTeam();
+        $res     = $this->_test->getAwayTeam();
         $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
         $this->assertRegExp($pattern, $res, 'Regexp missmatch');
     }

@@ -81,7 +81,7 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
     public function testDates() 
     {
         $res     = $this->_test->getDates();
-        $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
+        $pattern = '/\d{2}.\d{2}.\d{4}/';
         foreach ($res as $value) {
             $this->assertRegExp($pattern, $value, 'Regexp missmatch');
         }
@@ -95,7 +95,7 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
     public function testDuration() 
     {
         $res     = $this->_test->getDuration();
-        $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
+        $pattern = '/\d{1}/';
         foreach ($res as $value) {
             $this->assertRegExp($pattern, $value, 'Regexp missmatch');
         }

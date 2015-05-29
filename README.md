@@ -19,6 +19,9 @@ CREATE TABLE `arsenal_time` (
   `home` varchar,
   `away` varchar
 );
+CREATE TABLE `suspensions` (
+  `timestamp` datetime
+);
 ```
 ### User Data
 Replace these varibales in connect.php with your dB-info

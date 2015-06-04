@@ -67,7 +67,8 @@ class ArsenalContractsTest extends \PHPUnit_Framework_TestCase
     public function testPlayerNames() 
     {
         $res     = $this->_test->getPlayerName();
-        $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
+        $pattern
+            = '/^([A-zÀ-ú]+ [A-zÀ-ú]+|[A-zÀ-ú]+ [A-zÀ-ú]+-[A-zÀ-ú]+)$/';
         foreach ($res as $value) {
             $this->assertRegExp($pattern, $value, 'Regexp missmatch');
         }

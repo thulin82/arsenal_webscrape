@@ -70,7 +70,7 @@ class ArsenalContracts
         );
         preg_match_all('/alt="(.* .*)" class="bilder/', $html, $matches2);
         $this->_contractEnds = $matches[1];
-        $this->_playerName = $matches2[1];
+        $this->_playerName   = $matches2[1];
     }
     
     /**

@@ -50,54 +50,28 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testPlayerName() 
+    public function testSuspensionItems() 
     {
-        $res     = $this->_test->getPlayerName();
-        $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
-        foreach ($res as $value) {
-            $this->assertRegExp($pattern, $value, 'Regexp missmatch');
+        $res1     = $this->_test->getPlayerName();
+        $pattern1 = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
+        foreach ($res1 as $value) {
+            $this->assertRegExp($pattern1, $value, 'Regexp missmatch');
+        }
+        $res2     = $this->_test->getClubName();
+        $pattern2 = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
+        foreach ($res2 as $value) {
+            $this->assertRegExp($pattern2, $value, 'Regexp missmatch');
+        }
+        $res3     = $this->_test->getDates();
+        $pattern3 = '/\d{2}.\d{2}.\d{4}/';
+        foreach ($res3 as $value) {
+            $this->assertRegExp($pattern3, $value, 'Regexp missmatch');
+        }
+        $res4     = $this->_test->getDuration();
+        $pattern4 = '/\d{1}/';
+        foreach ($res4 as $value) {
+            $this->assertRegExp($pattern4, $value, 'Regexp missmatch');
         }
     }
     
-    /**
-     * Test Club Name in getPLSuspensions
-     *
-     * @return void
-     */
-    public function testClubName() 
-    {
-        $res     = $this->_test->getClubName();
-        $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
-        foreach ($res as $value) {
-            $this->assertRegExp($pattern, $value, 'Regexp missmatch');
-        }
-    }
-    
-    /**
-     * Test Dates in getPLSuspensions
-     *
-     * @return void
-     */
-    public function testDates() 
-    {
-        $res     = $this->_test->getDates();
-        $pattern = '/\d{2}.\d{2}.\d{4}/';
-        foreach ($res as $value) {
-            $this->assertRegExp($pattern, $value, 'Regexp missmatch');
-        }
-    }
-    
-    /**
-     * Test Duration in getPLSuspensions
-     *
-     * @return void
-     */
-    public function testDuration() 
-    {
-        $res     = $this->_test->getDuration();
-        $pattern = '/\d{1}/';
-        foreach ($res as $value) {
-            $this->assertRegExp($pattern, $value, 'Regexp missmatch');
-        }
-    }
 }

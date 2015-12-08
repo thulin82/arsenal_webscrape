@@ -32,4 +32,4 @@ $mysql_password = 'USER_PASSWORD';
 $mysql_database = 'DATABASE_NAME';
 ```
 
-© Markus Thulin 2015-
+© Markus Thulin 2014-

@@ -21,7 +21,7 @@
 * @license  http://www.opensource.org/licenses/mit-license.php MIT
 * @link     https://github.com/thulin82/arsenal_webscrape
 */
-class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
+class PremierLeagueSuspensionsTest extends \PHPUnit\Framework\TestCase
 {
     private $_test;
     /**
@@ -29,7 +29,7 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp() 
+    public function setUp()
     {
         $this->_test = new PremierLeagueSuspensions();
         $this->_test->getPlSuspensions();
@@ -40,7 +40,7 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown() 
+    public function tearDown()
     {
         unset($this->_test);
     }
@@ -50,7 +50,7 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testSuspensionItems() 
+    public function testSuspensionItems()
     {
         $res1     = $this->_test->getPlayerName();
         $pattern1 = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
@@ -73,5 +73,4 @@ class PremierLeagueSuspensionsTest extends \PHPUnit_Framework_TestCase
             $this->assertRegExp($pattern4, $value, 'Regexp missmatch');
         }
     }
-    
 }

@@ -21,7 +21,7 @@
 * @license  http://www.opensource.org/licenses/mit-license.php MIT
 * @link     https://github.com/thulin82/arsenal_webscrape
 */
-class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
+class ArsenalTimeTest extends \PHPUnit\Framework\TestCase
 {
     private $_test;
     /**
@@ -29,7 +29,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp() 
+    public function setUp()
     {
         $this->_test = new ArsenalTime();
         $this->_test->getArsenalTime();
@@ -40,7 +40,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown() 
+    public function tearDown()
     {
         unset($this->_test);
     }
@@ -50,7 +50,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testGameTime() 
+    public function testGameTime()
     {
         $res     = $this->_test->getGameTime();
         $pattern = '/\d{10}/';
@@ -62,7 +62,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testHomeTeam() 
+    public function testHomeTeam()
     {
         $res     = $this->_test->getHomeTeam();
         $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';
@@ -74,7 +74,7 @@ class ArsenalTimeTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testAwayTeam() 
+    public function testAwayTeam()
     {
         $res     = $this->_test->getAwayTeam();
         $pattern = '/^(\w+|\w+ \w+|\w+ \w+ \w+)$/';

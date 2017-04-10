@@ -49,9 +49,9 @@ class PremierLeagueSuspensions
     /**
     * Destructor
     */
-    public function __destruct() 
+    public function __destruct()
     {
-        curl_close($this->_ch);           
+        curl_close($this->_ch);
     }
 
     /**

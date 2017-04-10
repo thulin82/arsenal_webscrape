@@ -21,7 +21,7 @@
 * @license  http://www.opensource.org/licenses/mit-license.php MIT
 * @link     https://github.com/thulin82/arsenal_webscrape
 */
-class ArsenalContractsTest extends \PHPUnit_Framework_TestCase
+class ArsenalContractsTest extends \PHPUnit\Framework\TestCase
 {
     private $_test;
     /**
@@ -29,7 +29,7 @@ class ArsenalContractsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp() 
+    public function setUp()
     {
         $this->_test = new ArsenalContracts();
         $this->_test->getArsenalContracts();
@@ -40,7 +40,7 @@ class ArsenalContractsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown() 
+    public function tearDown()
     {
         unset($this->_test);
     }
@@ -50,7 +50,7 @@ class ArsenalContractsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testContractEnds() 
+    public function testContractEnds()
     {
         $res     = $this->_test->getContractEnds();
         $pattern = '/\d{2}.\d{2}.\d{4}/';
@@ -64,7 +64,7 @@ class ArsenalContractsTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testPlayerNames() 
+    public function testPlayerNames()
     {
         $res     = $this->_test->getPlayerName();
         $pattern

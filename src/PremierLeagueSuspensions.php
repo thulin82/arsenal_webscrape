@@ -24,7 +24,7 @@
 class PremierLeagueSuspensions
 {
     const URL_PL_SUSPENSIONS
-        = 'http://www.thefa.com/football-rules-governance/suspensions';
+        = 'http://www.thefa.com/football-rules-governance/discipline/suspensions';
 
     private $_ch;
     private $_playerName;

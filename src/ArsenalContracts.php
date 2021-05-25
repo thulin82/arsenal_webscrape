@@ -1,94 +1,73 @@
 <?php
-/**
-* ArsenalContracts
-*
-* PHP version 5
-*
-* @category ArsenalContracts
-* @package  Arsenal_Webscrape
-* @author   Markus Thulin <macky_b@hotmail.com>
-* @license  http://www.opensource.org/licenses/mit-license.php MIT
-* @link     https://github.com/thulin82/arsenal_webscrape
-*/
-/**
-* ArsenalContracts
-*
-* PHP version 5
-*
-* @category ArsenalContracts
-* @package  Arsenal_Webscrape
-* @author   Markus Thulin <macky_b@hotmail.com>
-* @license  http://www.opensource.org/licenses/mit-license.php MIT
-* @link     https://github.com/thulin82/arsenal_webscrape
-*/
+
 class ArsenalContracts
 {
-    const URL_CONTRACTS = 'http://www.transfermarkt.co.uk/jumplist/kader/verein/11';
-
-    private $_ch;
+    /**
+     * Contract Expiration Date
+     *
+     * @var string
+     */
     private $_contractEnds;
+
+    /**
+     * Player Name
+     *
+     * @var string
+     */
     private $_playerName;
 
     /**
-    * Constructor
-    *
-    * Initialize Curl and set a few options
-    */
-    public function __construct()
+     * Scrape the contract data from transfermarkt
+     *
+     * @return void
+     */
+    public function getArsenalContracts() :  void
     {
-        date_default_timezone_set('Europe/Stockholm');
-        $this->_ch = curl_init();
-        curl_setopt($this->_ch, CURLOPT_HEADER, true);
-        curl_setopt($this->_ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->_ch, CURLOPT_TIMEOUT, 30);
-        curl_setopt(
-            $this->_ch, CURLOPT_USERAGENT,
-            'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0'
-        );
-    }
+        $names_array = array();
+        $dates_array = array();
 
-    /**
-    * Destructor
-    */
-    public function __destruct()
-    {
-        curl_close($this->_ch);
-    }
+        $httpClient = new \GuzzleHttp\Client();
+        $response = $httpClient->get('https://www.transfermarkt.co.uk/jumplist/kader/verein/11');
+        $htmlString = (string) $response->getBody();
 
-    /**
-    * GetArsenalContracts
-    *
-    * @return void
-    */
-    public function getArsenalContracts()
-    {
+        libxml_use_internal_errors(true);
 
-        curl_setopt($this->_ch, CURLOPT_URL, self::URL_CONTRACTS);
-        $html = curl_exec($this->_ch);
-        preg_match_all(
-            '/<td class="zentriert">(\d\d.\d\d.\d\d\d\d)<\/td>/', $html, $matches
-        );
-        preg_match_all('/title="\S* \S*" alt="(\S* \S*)" class="bilder/', $html, $matches2);
-        $this->_contractEnds = $matches[1];
-        $this->_playerName   = $matches2[1];
+        $doc = new DOMDocument();
+        $doc->loadHTML($htmlString);
+        $xpath = new DOMXPath($doc);
+
+        $playerData = $xpath->evaluate('//span[@class="hide-for-small"]');
+
+        foreach ($playerData as $d) {
+            $names_array[] = $d->textContent;
+        }
+
+        $contractData = $xpath->evaluate('/html[1]/body[1]/div[2]/div[11]/div[1]/div[1]/div[4]/div[1]/table[1]/tbody[1]/tr/td[5]');
+
+        foreach ($contractData as $d) {
+            $dates_array[] = $d->textContent;
+        }
+
+        $this->_contractEnds = $dates_array;
+        $this->_playerName   = $names_array;
     }
     
     /**
-    * GetContractEnds
-    *
-    * @return array<String> Dates
-    */
-    public function getContractEnds()
+     * GetContractEnds
+     *
+     * @return array<String> Dates
+     */
+    public function getContractEnds() : array
     {
         return $this->_contractEnds;
     }
 
     /**
-    * GetPlayerName
-    *
-    * @return array<String> Names
-    */
-    public function getPlayerName()
+     * GetPlayerName
+     *
+     * @return array<String> Names
+     */
+    public function getPlayerName() : array
     {
         return $this->_playerName;
     }

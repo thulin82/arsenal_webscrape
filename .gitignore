@@ -1,3 +1,4 @@
 report
 coverage.clover
 vendor
+*.cache

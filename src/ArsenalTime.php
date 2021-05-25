@@ -1,102 +1,80 @@
 <?php
-/**
-* ArsenalTime
-*
-* PHP version 5
-*
-* @category ArsenalTime
-* @package  Arsenal_Webscrape
-* @author   Markus Thulin <macky_b@hotmail.com>
-* @license  http://www.opensource.org/licenses/mit-license.php MIT
-* @link     https://github.com/thulin82/arsenal_webscrape
-*/
-/**
-* ArsenalTime
-*
-* PHP version 5
-*
-* @category ArsenalTime
-* @package  Arsenal_Webscrape
-* @author   Markus Thulin <macky_b@hotmail.com>
-* @license  http://www.opensource.org/licenses/mit-license.php MIT
-* @link     https://github.com/thulin82/arsenal_webscrape
-*/
+
 class ArsenalTime
 {
-    const URL_ARSENAL_TIME = 'www.arsenal.com/fixtures/first-team';
-
+    /**
+     * Game Time
+     *
+     * @var string
+     */
     private $_gameTime;
-    private $_ch;
-    private $_homeTeam;
-    private $_awayTeam;
 
     /**
-    * Constructor
-    *
-    * Initialize Curl and set a few options
-    */
-    public function __construct()
+     * Game Date
+     *
+     * @var string
+     */
+    private $_gameDate;
+
+    /**
+     * Versus Team
+     *
+     * @var string
+     */
+    private $_versusTeam;
+
+    /**
+     * Scrape the data for next game from arsenal.com
+     *
+     * @return void
+     */
+    public function getArsenalTime() : void
     {
-        date_default_timezone_set('Europe/Stockholm');
-        $this->_ch = curl_init();
-        curl_setopt($this->_ch, CURLOPT_HEADER, true);
-        curl_setopt($this->_ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->_ch, CURLOPT_TIMEOUT, 30);
+        $httpClient = new \GuzzleHttp\Client();
+        $response = $httpClient->get('https://www.arsenal.com');
+        $htmlString = (string) $response->getBody();
+
+        libxml_use_internal_errors(true);
+
+        $doc = new DOMDocument();
+        $doc->loadHTML($htmlString);
+        $xpath = new DOMXPath($doc);
+
+        $matchData = $xpath->evaluate('//article[@id="block-views-block-fixtures-page-block-4"]/div/header/h3');
+        preg_match('/(\w*) - (\w* \w* \d*) - (\d\d:\d\d)/', $matchData[0]->textContent, $matches);
+
+        $this->_versusTeam = $matches[1];
+        $this->_gameDate = $matches[2];
+        $this->_gameTime = $matches[3];
     }
 
     /**
-    * Destructor
-    */
-    public function __destruct()
-    {
-        curl_close($this->_ch);
-    }
-
-    /**
-    * GetArsenalTime
-    *
-    * @return void
-    */
-    public function getArsenalTime()
-    {
-
-        curl_setopt($this->_ch, CURLOPT_URL, self::URL_ARSENAL_TIME);
-        $html = curl_exec($this->_ch);
-        preg_match('/data-next-fixture-time="(\d*)/', $html, $matches1);
-        preg_match('/<td class="right club-name">(.*)<\/td>/', $html, $matches2);
-        preg_match('/<td class="left club-name">(.*)<\/td>/', $html, $matches3);
-        $this->_gameTime = $matches1[1];
-        $this->_homeTeam = $matches2[1];
-        $this->_awayTeam = $matches3[1];
-    }
-
-    /**
-    * GetGameTime
-    *
-    * @return string Game Time
-    */
-    public function getGameTime()
+     * GetGameTime
+     *
+     * @return string Game Time
+     */
+    public function getGameTime() : string
     {
         return $this->_gameTime;
     }
 
     /**
-    * GetHomeTeam
-    *
-    * @return string Home Team
-    */
-    public function getHomeTeam()
+     * GetGameDate
+     *
+     * @return string Game Date
+     */
+    public function getGameDate() : string
     {
-        return $this->_homeTeam;
+        return $this->_gameDate;
     }
     
     /**
-    * GetAwayTeam
-    *
-    * @return string Away Team
-    */
-    public function getAwayTeam()
+     * GetVersusTeam
+     *
+     * @return string Versus Team
+     */
+    public function getVersusTeam() : string
     {
-        return $this->_awayTeam;
+        return $this->_versusTeam;
     }
 }

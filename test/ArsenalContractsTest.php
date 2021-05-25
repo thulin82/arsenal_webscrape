@@ -1,76 +1,62 @@
 <?php
-/**
-* ArsenalContracts Test
-*
-* PHP version 5
-*
-* @category ArsenalContractsTest
-* @package  Arsenal_Webscrape
-* @author   Markus Thulin <macky_b@hotmail.com>
-* @license  http://www.opensource.org/licenses/mit-license.php MIT
-* @link     https://github.com/thulin82/arsenal_webscrape
-*/
-/**
-* ArsenalContracts Test
-*
-* PHP version 5
-*
-* @category ArsenalContractsTest
-* @package  Arsenal_Webscrape
-* @author   Markus Thulin <macky_b@hotmail.com>
-* @license  http://www.opensource.org/licenses/mit-license.php MIT
-* @link     https://github.com/thulin82/arsenal_webscrape
-*/
-class ArsenalContractsTest extends \PHPUnit\Framework\TestCase
+
+use PHPUnit\Framework\TestCase;
+
+class ArsenalContractsTest extends TestCase
 {
+    /**
+     * Instance variable
+     *
+     * @var ArsenalContracts
+     */
     private $_test;
+
     /**
      * Test Setup
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp() : void
     {
         $this->_test = new ArsenalContracts();
         $this->_test->getArsenalContracts();
     }
-    
+
     /**
      * Test Teardown
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown() : void
     {
         unset($this->_test);
     }
-    
+
     /**
      * Test Contract Ends in getArsenalContracts
      *
      * @return void
      */
-    public function testContractEnds()
+    public function testContractEnds() : void
     {
         $res     = $this->_test->getContractEnds();
-        $pattern = '/\d{2}.\d{2}.\d{4}/';
+        $pattern = '/([a-z]{3} \d{2}, \d{4})/i';
         foreach ($res as $value) {
-            $this->assertRegExp($pattern, $value, 'Regexp missmatch');
+            $this->assertMatchesRegularExpression($pattern, $value, 'Regexp missmatch');
         }
     }
-    
+
     /**
      * Test Player Names in getArsenalContracts
      *
      * @return void
      */
-    public function testPlayerNames()
+    public function testPlayerNames() : void
     {
         $res     = $this->_test->getPlayerName();
-        $pattern
-            = '/^([A-zÀ-ú]+ [A-zÀ-ú]+|[A-zÀ-ú]+ [A-zÀ-ú]+-[A-zÀ-ú]+)$/';
+        $pattern = '/^([a-ú ,.\'-]+)$/i';
         foreach ($res as $value) {
-            $this->assertRegExp($pattern, $value, 'Regexp missmatch');
+            $this->assertMatchesRegularExpression($pattern, $value, 'Regexp missmatch');
         }
     }
 }

@@ -5,33 +5,28 @@
 ## Requirements
 
 -   [PHP](http://php.net/) - The latest version of PHP is highly recommended
--   MySQL or similar dB
+-   [Composer](https://getcomposer.org/) - Dependency Manager
 
-## SQL
+## Install
 
-### Tables
+### Dependencies
 
-```SQL
-CREATE TABLE `arsenal_time` (
-  `timestamp` datetime,
-  `game_time` int,
-  `home` varchar,
-  `away` varchar
-);
-CREATE TABLE `suspensions` (
-  `timestamp` datetime
-);
+```bash
+composer install
 ```
 
-### User Data
+## Docker
 
-Replace these variables in connect.php with your dB-info
+### Build
 
-```php
-$mysql_server   = 'SERVER_NAME';
-$mysql_user     = 'USER_NAME';
-$mysql_password = 'USER_PASSWORD';
-$mysql_database = 'DATABASE_NAME';
+```bash
+docker build -t arsenal_webscrape .
+```
+
+### Run
+
+```bash
+docker-compose up -d
 ```
 
 © Markus Thulin 2015-

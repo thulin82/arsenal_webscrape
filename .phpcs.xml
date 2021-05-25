@@ -4,7 +4,7 @@
 
     <file>.</file>
 
-    <exclude-pattern>build</exclude-pattern>
+    <exclude-pattern>public</exclude-pattern>
     <exclude-pattern>cache</exclude-pattern>
     <exclude-pattern>doc</exclude-pattern>
     <exclude-pattern>htdocs</exclude-pattern>

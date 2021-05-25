@@ -12,7 +12,7 @@ jobs:
 
         strategy:
             matrix:
-                php-versions: ['7.3', '7.4']
+                php-versions: ['7.3', '7.4', '8.0']
 
         steps:
             - uses: actions/checkout@v2
@@ -24,7 +24,6 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-versions }}
-                  #tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
 
             - name: Cache Composer packages
               id: composer-cache

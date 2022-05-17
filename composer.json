@@ -13,7 +13,7 @@
         "phpstan/phpstan": "v0.12.*",
         "squizlabs/php_codesniffer": "3.6.*",
         "phpunit/phpunit": "v9.5.*",
-        "guzzlehttp/guzzle": "7.3.*"
+        "guzzlehttp/guzzle": "7.4.*"
     },
     "autoload": {
         "psr-4": {"": ["src/", "test/"]}

@@ -1,3 +1,8 @@
+# DEPRECATED
+This repo is no longer maintained, and the functionality is not guaranteed.
+
+However, there is a js/node version with the same functionality here: [Arsenal Data](https://github.com/thulin82/arsenal-data)
+
 # [Arsenal Webscrape](https://github.com/thulin82/arsenal_webscrape)
 
 [![GitHub Actions](https://github.com/thulin82/arsenal_webscrape/actions/workflows/github-actions.yml/badge.svg)](https://github.com/thulin82/arsenal_webscrape/actions/workflows/github-actions.yml)
